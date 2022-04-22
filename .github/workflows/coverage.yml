@@ -20,7 +20,7 @@ jobs:
       - name: Commit Coverage
         uses: timkrase/phpunit-coverage-badge@v1.2.0
         with:
-          report: /home/runner/work/laravel-slack-bot/laravel-slack-bot/clover.xml
+          report: clover.xml
           report_type: clover
           coverage_badge_path: coverage-badge.svg
           repo_token: ${{ secrets.GITHUB_TOKEN }}
