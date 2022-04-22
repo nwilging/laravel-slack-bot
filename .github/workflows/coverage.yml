@@ -9,7 +9,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Run Coverage
+      - name: Run Tests
+        run: vendor/bin/phpunit
+      - name: Commit Coverage
         uses: timkrase/phpunit-coverage-badge@v1.2.0
         with:
           report: clover.xml
