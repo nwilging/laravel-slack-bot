@@ -16,6 +16,9 @@ abstract class Element implements Arrayable
     public const TYPE_MULTI_SELECT_USERS = 'multi_users_select';
     public const TYPE_MULTI_SELECT_CONVERSATIONS = 'multi_conversations_select';
     public const TYPE_MULTI_SELECT_CHANNELS = 'multi_channels_select';
+    public const TYPE_OVERFLOW_MENU = 'overflow';
+    public const TYPE_PLAIN_TEXT_INPUT = 'plain_text_input';
+    public const TYPE_RADIO_BUTTON_GROUP = 'radio_buttons';
 
     public abstract function getType(): string;
 
