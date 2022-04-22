@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Composer
         uses: php-actions/composer@v5
       - name: Run Tests
@@ -16,7 +18,7 @@ jobs:
       - name: Commit Coverage
         uses: timkrase/phpunit-coverage-badge@v1.2.0
         with:
-          report: clover.xml
+          report: /home/runner/work/laravel-slack-bot/laravel-slack-bot/clover.xml
           report_type: clover
           coverage_badge_path: coverage-badge.svg
           repo_token: ${{ secrets.GITHUB_TOKEN }}
