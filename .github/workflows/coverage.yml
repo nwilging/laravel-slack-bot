@@ -1,0 +1,19 @@
+name: Coverage
+on:
+  workflow_call:
+
+jobs:
+  run-coverage:
+    name: Run Tests with Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run Coverage
+        uses: timkrase/phpunit-coverage-badge@v1.2.0
+        with:
+          report: clover.xml
+          report_type: clover
+          coverage_badge_path: coverage-badge.svg
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          push_badge: true

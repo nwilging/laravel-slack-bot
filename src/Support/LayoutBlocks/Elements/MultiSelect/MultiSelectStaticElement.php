@@ -48,6 +48,16 @@ class MultiSelectStaticElement extends Element
         return $this;
     }
 
+    /**
+     * @param OptionObject[] $options
+     * @return $this
+     */
+    public function withInitialOptions(array $options): self
+    {
+        $this->initialOptions = $options;
+        return $this;
+    }
+
     public function getType(): string
     {
         return static::TYPE_MULTI_SELECT_STATIC;

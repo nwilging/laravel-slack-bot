@@ -7,7 +7,7 @@ trait WithFocusOnLoad
 {
     protected ?bool $focusOnLoad = null;
 
-    public function withFocusOnLoad(bool $focusOnLoad): self
+    public function withFocusOnLoad(bool $focusOnLoad = true): self
     {
         $this->focusOnLoad = $focusOnLoad;
         return $this;

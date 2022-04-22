@@ -10,7 +10,7 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\HeaderBlock;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\MarkdownObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBuilder\Builder;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class BuilderTest extends TestCase
 {

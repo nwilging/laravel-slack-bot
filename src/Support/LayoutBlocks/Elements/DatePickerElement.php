@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks;
+namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;

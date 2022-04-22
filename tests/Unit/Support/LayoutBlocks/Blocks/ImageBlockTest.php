@@ -6,7 +6,7 @@ namespace Tests\Unit\Support\LayoutBlocks\Blocks;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\ImageBlock;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ImageBlockTest extends TestCase
 {

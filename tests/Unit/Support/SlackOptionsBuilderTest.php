@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Support;
 
 use Nwilging\LaravelSlackBot\Support\SlackOptionsBuilder;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class SlackOptionsBuilderTest extends TestCase
 {
