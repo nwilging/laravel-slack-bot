@@ -75,6 +75,7 @@ class SlackNotification extends Notification
             'contentType' => 'text',
             'message' => 'test plain text message',
             'channelId' => 'C012345',
+            'options' => [], // Message Options
         ];
     }
 }
