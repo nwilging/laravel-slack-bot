@@ -1,5 +1,6 @@
 {
     "name": "nwilging/laravel-slack-bot",
+    "description": "A robust Slack messaging integration for Laravel",
     "type": "library",
     "license": "MIT",
     "autoload": {

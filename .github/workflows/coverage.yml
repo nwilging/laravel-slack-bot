@@ -23,5 +23,5 @@ jobs:
           report: clover.xml
           report_type: clover
           coverage_badge_path: ./.github/coverage-badge.svg
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GH_ACCESS_TOKEN }}
           push_badge: true
