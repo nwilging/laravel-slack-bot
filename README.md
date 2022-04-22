@@ -1,5 +1,8 @@
 # Laravel Slack Bot
 
+![Tests](https://github.com/nwilging/laravel-slack-bot/actions/workflows/main-branch.yml/badge.svg?branch=main)
+![Coverage](./.github/coverage-badge.svg)
+
 A robust Slack messaging integration for Laravel
 
 ---
