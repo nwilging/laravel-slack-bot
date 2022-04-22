@@ -4,7 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Nwilging\\LaravelSlackBot\\": "src/"
+            "Nwilging\\LaravelSlackBot\\": "src/",
+            "Tests\\": "tests/"
         }
     },
     "authors": [

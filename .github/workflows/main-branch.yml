@@ -1,0 +1,10 @@
+name: Main Branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-coverage:
+    name: Run Tests + Coverage
+    uses: ./.github/workflows/coverage.yml

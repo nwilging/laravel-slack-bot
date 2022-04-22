@@ -6,7 +6,7 @@ namespace Tests\Unit\Support\LayoutBlocks\Blocks;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\ActionsBlock;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ActionsBlockTest extends TestCase
 {

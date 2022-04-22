@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Services;
 
 use GuzzleHttp\ClientInterface;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Mockery\MockInterface;
 use Nwilging\LaravelSlackBot\Services\SlackApiService;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;

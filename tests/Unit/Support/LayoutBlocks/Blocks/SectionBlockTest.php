@@ -7,7 +7,7 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\SectionBlock;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class SectionBlockTest extends TestCase
 {

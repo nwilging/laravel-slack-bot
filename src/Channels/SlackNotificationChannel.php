@@ -27,7 +27,7 @@ class SlackNotificationChannel implements SlackNotificationChannelContract
                 $this->handleBlocksMessage($slackNotificationArray);
                 break;
             default:
-                throw new \InvalidArgumentException(sprintf('%s is not a valid content type. Use `blocks` or `text`'));
+                throw new \InvalidArgumentException(sprintf('%s is not a valid content type. Use `blocks` or `text`', $slackNotificationArray['contentType']));
         }
     }
 

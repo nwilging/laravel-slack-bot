@@ -5,7 +5,7 @@ namespace Tests\Unit\Support\LayoutBlocks\Blocks;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\DividerBlock;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class DividerBlockTest extends TestCase
 {
