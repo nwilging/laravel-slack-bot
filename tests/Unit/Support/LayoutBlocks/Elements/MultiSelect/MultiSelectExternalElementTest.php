@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Support\LayoutBlocks\Elements\MultiSelect;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
@@ -42,6 +43,10 @@ class MultiSelectExternalElementTest extends TestCase
 
     public function testElementWithOptions()
     {
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
+
         $expectedPlaceholderArray = ['key' => 'val'];
 
         $actionId = 'action-id';
@@ -63,6 +68,7 @@ class MultiSelectExternalElementTest extends TestCase
         $element->withFocusOnLoad();
         $element->withInitialOptions([$option1, $option2]);
         $element->maxSelectedItems(1);
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_MULTI_SELECT_EXTERNAL,
@@ -75,6 +81,7 @@ class MultiSelectExternalElementTest extends TestCase
             'focus_on_load' => true,
             'max_selected_items' => 1,
             'min_query_length' => 5,
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 

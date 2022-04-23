@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Support\LayoutBlocks\Elements;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\TimePickerElement;
@@ -31,6 +32,10 @@ class TimePickerElementTest extends TestCase
 
     public function testElementWithOptions()
     {
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
+
         $expectedPlaceholderArray = ['key' => 'value'];
 
         $placeholder = \Mockery::mock(TextObject::class);
@@ -42,6 +47,7 @@ class TimePickerElementTest extends TestCase
 
         $element->withFocusOnLoad();
         $element->withInitialTime('10:00:00');
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_TIME_PICKER,
@@ -49,6 +55,7 @@ class TimePickerElementTest extends TestCase
             'placeholder' => $expectedPlaceholderArray,
             'focus_on_load' => true,
             'initial_time' => '10:00:00',
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 

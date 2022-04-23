@@ -7,11 +7,12 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Composition\WithFocusOnLoad;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmationDialog;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
 class DatePickerElement extends Element
 {
-    use WithFocusOnLoad, MergesArrays;
+    use WithFocusOnLoad, MergesArrays, WithConfirmationDialog;
 
     protected string $actionId;
 
@@ -46,11 +47,11 @@ class DatePickerElement extends Element
 
     public function toArray(): array
     {
-        return $this->toMergedArray([
+        return $this->toMergedArray($this->mergeConfirmationDialog([
             'action_id' => $this->actionId,
             'initial_date' => $this->initialDate,
             'placeholder' => ($this->placeholder) ? $this->placeholder->toArray() : null,
             'focus_on_load' => $this->focusOnLoad,
-        ]);
+        ]));
     }
 }

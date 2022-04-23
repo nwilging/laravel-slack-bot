@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Support\LayoutBlocks\Elements\SelectMenu;
 
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\SelectMenu\SelectMenuPublicChannelElement;
@@ -40,6 +41,10 @@ class SelectMenuPublicChannelElementTest extends TestCase
 
     public function testElementWithOptions()
     {
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
+
         $expectedPlaceholderArray = ['key' => 'value'];
 
         $placeholder = \Mockery::mock(TextObject::class);
@@ -51,6 +56,7 @@ class SelectMenuPublicChannelElementTest extends TestCase
         $element->withInitialOption('general');
         $element->withFocusOnLoad();
         $element->withResponseUrlEnabled();
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_SELECT_MENU_CHANNELS,
@@ -59,6 +65,7 @@ class SelectMenuPublicChannelElementTest extends TestCase
             'initial_channel' => 'general',
             'focus_on_load' => true,
             'response_url_enabled' => true,
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 }

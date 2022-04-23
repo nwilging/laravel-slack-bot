@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Support\LayoutBlocks\Elements\MultiSelect;
 
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\MultiSelect\MultiSelectConversationElement;
@@ -41,6 +42,10 @@ class MultiSelectPublicChannelElementTest extends TestCase
 
     public function testElementWithOptions()
     {
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
+
         $expectedPlaceholderArray = ['key' => 'value'];
 
         $actionId = 'action-id';
@@ -54,6 +59,7 @@ class MultiSelectPublicChannelElementTest extends TestCase
         $element->withInitialChannels($initialChannels);
         $element->maxSelectedItems(5);
         $element->withFocusOnLoad();
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_MULTI_SELECT_CHANNELS,
@@ -62,6 +68,7 @@ class MultiSelectPublicChannelElementTest extends TestCase
             'focus_on_load' => true,
             'max_selected_items' => 5,
             'initial_channels' => $initialChannels,
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 }

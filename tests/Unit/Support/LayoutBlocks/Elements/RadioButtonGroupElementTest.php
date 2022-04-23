@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Support\LayoutBlocks\Elements;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\RadioButtonGroupElement;
@@ -35,6 +36,10 @@ class RadioButtonGroupElementTest extends TestCase
 
     public function testElementWithOptions()
     {
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
+
         $expectedOption1Array = ['k1' => 'v1'];
         $expectedOption2Array = ['k2' => 'v2'];
 
@@ -50,6 +55,7 @@ class RadioButtonGroupElementTest extends TestCase
 
         $element->withInitialOption($option1);
         $element->withFocusOnLoad();
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_RADIO_BUTTON_GROUP,
@@ -57,6 +63,7 @@ class RadioButtonGroupElementTest extends TestCase
             'options' => [$expectedOption1Array, $expectedOption2Array],
             'focus_on_load' => true,
             'initial_option' => $expectedOption1Array,
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 
