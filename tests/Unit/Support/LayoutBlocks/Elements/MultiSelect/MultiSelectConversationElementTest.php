@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Support\LayoutBlocks\Elements\MultiSelect;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\FilterObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\MultiSelect\MultiSelectConversationElement;
@@ -45,6 +46,10 @@ class MultiSelectConversationElementTest extends TestCase
         $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
         $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
 
+        $expectedFilterArray = ['filter' => 'value'];
+        $filter = \Mockery::mock(FilterObject::class);
+        $filter->shouldReceive('toArray')->andReturn($expectedFilterArray);
+
         $expectedPlaceholderArray = ['key' => 'value'];
 
         $actionId = 'action-id';
@@ -60,6 +65,7 @@ class MultiSelectConversationElementTest extends TestCase
         $element->withFocusOnLoad();
         $element->defaultToCurrent();
         $element->withConfirmationDialog($confirmationDialogObject);
+        $element->withFilter($filter);
 
         $this->assertEquals([
             'type' => Element::TYPE_MULTI_SELECT_CONVERSATIONS,
@@ -70,6 +76,7 @@ class MultiSelectConversationElementTest extends TestCase
             'initial_conversations' => $initialConversations,
             'default_to_current_conversation' => true,
             'confirm' => $expectedConfirmationDialogArray,
+            'filter' => $expectedFilterArray,
         ], $element->toArray());
     }
 }
