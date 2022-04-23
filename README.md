@@ -84,9 +84,7 @@ class SlackNotification extends Notification
 }
 ```
 
-The `channelId` here is the ID of the channel you wish to send to. It is recommended to
-maintain a list of channel names and their associated IDs (such as in a database or configuration
-file) so that they may be supplied to the notification in whichever way you'd like.
+The `channelId` here is the ID or name of the channel you wish to send to.
 
 Read more on Usage for information on the `SlackApiService` which can provide you channel
 data (including ID) by a channel name.
