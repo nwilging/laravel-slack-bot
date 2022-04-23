@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Support\LayoutBlocks\Elements;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\CheckboxesElement;
@@ -40,19 +41,23 @@ class CheckboxesElementTest extends TestCase
     {
         $actionId = 'action-id';
 
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
         $expectedOption1Array = ['key' => 'val'];
         $expectedOption2Array = ['key2' => 'val2'];
 
         $option1 = \Mockery::mock(OptionObject::class);
         $option2 = \Mockery::mock(OptionObject::class);
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
 
         $option1->shouldReceive('toArray')->andReturn($expectedOption1Array);
         $option2->shouldReceive('toArray')->andReturn($expectedOption2Array);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
 
         $element = new CheckboxesElement($actionId, [$option1, $option2]);
 
         $element->withInitialOptions([$option1, $option2]);
         $element->withFocusOnLoad();
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_CHECKBOXES,
@@ -66,6 +71,7 @@ class CheckboxesElementTest extends TestCase
                 $expectedOption2Array,
             ],
             'focus_on_load' => true,
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 

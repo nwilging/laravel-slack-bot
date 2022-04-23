@@ -7,12 +7,13 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Composition\WithFocusOnLoad;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmationDialog;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\HasActionId;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
 class TimePickerElement extends Element
 {
-    use MergesArrays, HasActionId, WithFocusOnLoad;
+    use MergesArrays, HasActionId, WithFocusOnLoad, WithConfirmationDialog;
 
     protected TextObject $placeholder;
 
@@ -46,11 +47,11 @@ class TimePickerElement extends Element
 
     public function toArray(): array
     {
-        return $this->toMergedArray([
+        return $this->toMergedArray($this->mergeConfirmationDialog([
             'action_id' => $this->actionId,
             'placeholder' => $this->placeholder->toArray(),
             'initial_time' => $this->initialTime,
             'focus_on_load' => $this->focusOnLoad,
-        ]);
+        ]));
     }
 }

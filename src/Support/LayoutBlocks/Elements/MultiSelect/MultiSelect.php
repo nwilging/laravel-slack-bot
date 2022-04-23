@@ -6,12 +6,13 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\MultiSelect;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Composition\WithFocusOnLoad;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmationDialog;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MultiSelectElementCompatibility;
 
 abstract class MultiSelect extends Element
 {
-    use MultiSelectElementCompatibility, WithFocusOnLoad;
+    use MultiSelectElementCompatibility, WithFocusOnLoad, WithConfirmationDialog;
 
     protected string $actionId;
 
@@ -33,12 +34,12 @@ abstract class MultiSelect extends Element
 
     public function toArray(): array
     {
-        return [
+        return $this->mergeConfirmationDialog([
             'type' => $this->getType(),
             'action_id' => $this->actionId,
             'placeholder' => $this->placeholder->toArray(),
             'focus_on_load' => $this->focusOnLoad,
             'max_selected_items' => $this->maxSelectedItems,
-        ];
+        ]);
     }
 }

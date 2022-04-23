@@ -5,11 +5,12 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\MultiSelect;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithFilter;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
 class MultiSelectConversationElement extends MultiSelect
 {
-    use MergesArrays;
+    use MergesArrays, WithFilter;
 
     protected ?array $initialConversations = null;
 
@@ -50,9 +51,9 @@ class MultiSelectConversationElement extends MultiSelect
 
     public function toArray(): array
     {
-        return $this->toMergedArray([
+        return $this->toMergedArray($this->mergeFilter([
             'initial_conversations' => $this->initialConversations,
             'default_to_current_conversation' => $this->defaultToCurrent,
-        ]);
+        ]));
     }
 }

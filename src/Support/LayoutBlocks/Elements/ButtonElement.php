@@ -6,12 +6,13 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmationDialog;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\HasActionId;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
 class ButtonElement extends Element
 {
-    use HasActionId, MergesArrays;
+    use HasActionId, MergesArrays, WithConfirmationDialog;
 
     protected TextObject $text;
 
@@ -69,13 +70,13 @@ class ButtonElement extends Element
 
     public function toArray(): array
     {
-        return $this->toMergedArray([
+        return $this->toMergedArray($this->mergeConfirmationDialog([
             'text' => $this->text->toArray(),
             'action_id' => $this->actionId,
             'style' => $this->style,
             'url' => $this->url,
             'value' => $this->value,
             'accessibility_label' => $this->accessibilityLabel,
-        ]);
+        ]));
     }
 }

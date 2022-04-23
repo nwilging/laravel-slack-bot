@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Support\LayoutBlocks\Elements\SelectMenu;
 
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
@@ -52,6 +53,10 @@ class SelectMenuStaticElementTest extends TestCase
 
     public function testElementWithOptions()
     {
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
+
         $expectedPlaceholderArray = ['key' => 'value'];
 
         $placeholder = \Mockery::mock(TextObject::class);
@@ -71,6 +76,7 @@ class SelectMenuStaticElementTest extends TestCase
 
         $element->withInitialOption($option1);
         $element->withFocusOnLoad();
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_SELECT_MENU_STATIC,
@@ -79,6 +85,7 @@ class SelectMenuStaticElementTest extends TestCase
             'options' => [$expectedOption1Array, $expectedOption2Array],
             'initial_option' => $expectedOption1Array,
             'focus_on_load' => true,
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 }
