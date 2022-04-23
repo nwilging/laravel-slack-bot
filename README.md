@@ -52,6 +52,8 @@ SLACK_API_BOT_TOKEN=xoxb-your-bot-token
 
 # Basic Usage
 
+### [Message Examples](./examples)
+
 This package can be used automatically with Laravel notifications. Add `slack` to the
 `via()` array of your notification and a `toSlack()` method that returns an array:
 ```phpt
