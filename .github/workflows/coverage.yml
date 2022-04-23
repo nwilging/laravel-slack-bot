@@ -6,9 +6,6 @@ jobs:
   run-coverage:
     name: Run Tests with Coverage
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: [ "7.4", "8.0", "8.1" ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -17,7 +14,6 @@ jobs:
       - name: Composer
         uses: php-actions/composer@v5
         with:
-          php_version: ${{ matrix.php }}
           php_extensions: xdebug
       - name: Run Tests
         env:
