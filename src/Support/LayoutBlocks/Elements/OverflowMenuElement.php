@@ -10,6 +10,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmati
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\HasActionId;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Overflow Menu Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#overflow
+ */
 class OverflowMenuElement extends Element
 {
     use MergesArrays, HasActionId, WithConfirmationDialog;

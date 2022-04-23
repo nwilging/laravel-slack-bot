@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Multi Select Users Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#users_multi_select
+ */
 class MultiSelectUserElement extends MultiSelect
 {
     use MergesArrays;
@@ -19,6 +23,10 @@ class MultiSelectUserElement extends MultiSelect
     }
 
     /**
+     * An array of user IDs of any valid users to be pre-selected when the menu loads.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#users_multi_select__fields
+     *
      * @param string[] $initialUsers
      * @return $this
      */

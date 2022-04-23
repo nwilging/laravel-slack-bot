@@ -8,6 +8,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\HasInitialOption;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Select Menu Static Options Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#static_select
+ */
 class SelectMenuStaticElement extends SelectMenu
 {
     use MergesArrays, HasInitialOption;

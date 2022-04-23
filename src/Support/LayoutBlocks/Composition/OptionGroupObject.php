@@ -6,6 +6,10 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\CompositionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Option Group Object
+ * @see https://api.slack.com/reference/block-kit/composition-objects#option_group
+ */
 class OptionGroupObject extends CompositionObject
 {
     use MergesArrays;

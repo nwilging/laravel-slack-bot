@@ -6,6 +6,10 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks;
 use Illuminate\Contracts\Support\Arrayable;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * A Slack layout block
+ * @see https://api.slack.com/reference/block-kit/blocks
+ */
 abstract class Block implements Arrayable
 {
     public const TYPE_ACTIONS = 'actions';
@@ -24,8 +28,18 @@ abstract class Block implements Arrayable
         $this->blockId = $blockId;
     }
 
+    /**
+     * The Slack-API compatible type of this block
+     *
+     * @return string
+     */
     public abstract function getType(): string;
 
+    /**
+     * The Slack-API compatible array for this block
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return array_filter([

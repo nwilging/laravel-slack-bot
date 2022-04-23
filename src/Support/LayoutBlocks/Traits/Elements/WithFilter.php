@@ -9,6 +9,14 @@ trait WithFilter
 {
     protected ?FilterObject $filter = null;
 
+    /**
+     * A filter object that reduces the list of available conversations/channels using the specified criteria.
+     *
+     * @see https://api.slack.com/reference/block-kit/composition-objects#filter_conversations
+     *
+     * @param FilterObject $filter
+     * @return $this
+     */
     public function withFilter(FilterObject $filter): self
     {
         $this->filter = $filter;

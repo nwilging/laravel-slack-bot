@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Image Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#image
+ */
 class ImageElement extends Element
 {
     use MergesArrays;

@@ -8,6 +8,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithFilter;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Multi Select Conversations Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select
+ */
 class MultiSelectConversationElement extends MultiSelect
 {
     use MergesArrays, WithFilter;
@@ -21,6 +25,15 @@ class MultiSelectConversationElement extends MultiSelect
         parent::__construct($actionId, $placeholder);
     }
 
+    /**
+     * Pre-populates the select menu with the conversation that the user was viewing when they opened
+     * the modal, if available.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select__fields
+     *
+     * @param bool $defaultToCurrent
+     * @return $this
+     */
     public function defaultToCurrent(bool $defaultToCurrent = true): self
     {
         $this->defaultToCurrent = $defaultToCurrent;
@@ -28,6 +41,11 @@ class MultiSelectConversationElement extends MultiSelect
     }
 
     /**
+     * An array of one or more IDs of any valid conversations to be pre-selected when the menu loads.
+     * If defaultToCurrent is also supplied, initial conversations will be ignored.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select__fields
+     *
      * @param string[] $initialConversations
      * @return $this
      */

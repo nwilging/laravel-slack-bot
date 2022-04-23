@@ -5,6 +5,10 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks;
 
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * Slack Block Element
+ * @see https://api.slack.com/reference/block-kit/block-elements
+ */
 abstract class Element implements Arrayable
 {
     public const TYPE_BUTTON = 'button';
@@ -26,13 +30,25 @@ abstract class Element implements Arrayable
     public const TYPE_SELECT_MENU_CONVERSATIONS = 'conversations_select';
     public const TYPE_SELECT_MENU_CHANNELS = 'channels_select';
 
+    /**
+     * The Slack-API compatible type of this element
+     *
+     * @return string
+     */
     public abstract function getType(): string;
 
     /**
+     * The Blocks that this element is compatible with
+     *
      * @return string[]
      */
     public abstract function compatibleWith(): array;
 
+    /**
+     * The Slack-API compatible array for this element
+     *
+     * @return string[]
+     */
     public function toArray(): array
     {
         return [

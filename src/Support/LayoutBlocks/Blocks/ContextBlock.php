@@ -9,6 +9,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\HasElements;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Context Block
+ * @see https://api.slack.com/reference/block-kit/blocks#context
+ */
 class ContextBlock extends Block
 {
     use HasElements, MergesArrays;

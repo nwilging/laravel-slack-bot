@@ -10,6 +10,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Composition\WithFocusOn
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MultiSelectElementCompatibility;
 
+/**
+ * Multi Select Static Options Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#static_multi_select
+ */
 class MultiSelectStaticElement extends MultiSelect
 {
     use MergesArrays;
@@ -36,6 +40,11 @@ class MultiSelectStaticElement extends MultiSelect
     }
 
     /**
+     * An array of options that exactly match one or more of the options within options.
+     * These options will be selected when the menu initially loads.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#static_multi_select__fields
+     *
      * @param OptionObject[] $options
      * @return $this
      */

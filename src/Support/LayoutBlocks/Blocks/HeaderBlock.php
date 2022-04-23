@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Header Block
+ * @see https://api.slack.com/reference/block-kit/blocks#header
+ */
 class HeaderBlock extends Block
 {
     use MergesArrays;

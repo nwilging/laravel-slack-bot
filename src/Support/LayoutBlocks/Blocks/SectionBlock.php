@@ -8,6 +8,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Section Block
+ * @see https://api.slack.com/reference/block-kit/blocks#section
+ */
 class SectionBlock extends Block
 {
     use MergesArrays;
@@ -26,6 +30,15 @@ class SectionBlock extends Block
         parent::__construct($blockId);
     }
 
+    /**
+     * Preferred. The text for the block. Maximum length for the text in this field is 3000 characters.
+     * This field is not required if a valid array of fields objects is provided instead.
+     *
+     * @see https://api.slack.com/reference/block-kit/blocks#section_fields
+     *
+     * @param TextObject $text
+     * @return $this
+     */
     public function withText(TextObject $text): self
     {
         $this->text = $text;
@@ -33,6 +46,12 @@ class SectionBlock extends Block
     }
 
     /**
+     * Required if no text is provided. An array of text objects.
+     * Any text objects included with fields will be rendered in a compact format that allows for 2 columns of
+     * side-by-side text. Maximum number of items is 10. Maximum length for the text in each item is 2000 characters.
+     *
+     * @see https://api.slack.com/reference/block-kit/blocks#section_fields
+     *
      * @param TextObject[] $fields
      * @return $this
      */
@@ -42,6 +61,14 @@ class SectionBlock extends Block
         return $this;
     }
 
+    /**
+     * A Block Element to add as an accessory to this section
+     *
+     * @see https://api.slack.com/reference/block-kit/blocks#section_fields
+     *
+     * @param Element $accessory
+     * @return $this
+     */
     public function withAccessory(Element $accessory): self
     {
         $this->accessory = $accessory;

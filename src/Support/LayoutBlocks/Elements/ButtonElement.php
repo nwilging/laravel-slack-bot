@@ -10,6 +10,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmati
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\HasActionId;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Button Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#button
+ */
 class ButtonElement extends Element
 {
     use HasActionId, MergesArrays, WithConfirmationDialog;
@@ -30,12 +34,25 @@ class ButtonElement extends Element
         $this->actionId = $actionId;
     }
 
+    /**
+     * Sets the button style to `primary`
+     * @see https://api.slack.com/reference/block-kit/block-elements#button__fields
+     *
+     * @return $this
+     */
     public function primary(): self
     {
         $this->style = 'primary';
         return $this;
     }
 
+    /**
+     * Sets the button style to `danger`
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#button__fields
+     *
+     * @return $this
+     */
     public function danger(): self
     {
         $this->style = 'danger';
@@ -47,6 +64,14 @@ class ButtonElement extends Element
         return static::TYPE_BUTTON;
     }
 
+    /**
+     * A URL to load in the user's browser when the button is clicked.
+     * Maximum length for this field is 3000 characters.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#button__fields
+     *
+     * @return $this
+     */
     public function withUrl(string $url, ?string $value = null): self
     {
         $this->url = $url;
@@ -54,6 +79,15 @@ class ButtonElement extends Element
         return $this;
     }
 
+    /**
+     * A label for longer descriptive text about a button element.
+     * This label will be read out by screen readers instead of the button text object.
+     * Maximum length for this field is 75 characters.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#button__fields
+     *
+     * @return $this
+     */
     public function withAccessibilityLabel(string $accessibilityLabel): self
     {
         $this->accessibilityLabel = $accessibilityLabel;

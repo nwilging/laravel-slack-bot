@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\HasElements;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Actions Block
+ * @see https://api.slack.com/reference/block-kit/blocks#actions
+ */
 class ActionsBlock extends Block
 {
     use HasElements, MergesArrays;

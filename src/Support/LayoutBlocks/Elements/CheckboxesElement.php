@@ -10,6 +10,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmati
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Composition\WithFocusOnLoad;
 
+/**
+ * Checkboxes Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#checkboxes
+ */
 class CheckboxesElement extends Element
 {
     use MergesArrays, WithFocusOnLoad, WithConfirmationDialog;
@@ -37,6 +41,11 @@ class CheckboxesElement extends Element
     }
 
     /**
+     * An array of option objects that exactly matches one or more of the options within options.
+     * These options will be selected when the checkbox group initially loads.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#checkboxes__fields
+     *
      * @param OptionObject[] $options
      * @return $this
      */
