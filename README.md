@@ -52,6 +52,8 @@ SLACK_API_BOT_TOKEN=xoxb-your-bot-token
 
 # Basic Usage
 
+### [Message Examples](./examples)
+
 This package can be used automatically with Laravel notifications. Add `slack` to the
 `via()` array of your notification and a `toSlack()` method that returns an array:
 ```phpt
@@ -84,9 +86,7 @@ class SlackNotification extends Notification
 }
 ```
 
-The `channelId` here is the ID of the channel you wish to send to. It is recommended to
-maintain a list of channel names and their associated IDs (such as in a database or configuration
-file) so that they may be supplied to the notification in whichever way you'd like.
+The `channelId` here is the ID or name of the channel you wish to send to.
 
 Read more on Usage for information on the `SlackApiService` which can provide you channel
 data (including ID) by a channel name.

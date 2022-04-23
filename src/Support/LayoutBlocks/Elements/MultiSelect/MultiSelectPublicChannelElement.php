@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Multi Select Public Channels Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#channel_multi_select
+ */
 class MultiSelectPublicChannelElement extends MultiSelect
 {
     use MergesArrays;
@@ -19,6 +23,10 @@ class MultiSelectPublicChannelElement extends MultiSelect
     }
 
     /**
+     * An array of one or more IDs of any valid public channel to be pre-selected when the menu loads.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#channel_multi_select__fields
+     *
      * @param string[] $initialChannels
      * @return $this
      */

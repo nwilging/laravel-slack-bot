@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\HasInitialOption;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Select Menu Users Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#users_select
+ */
 class SelectMenuUserElement extends SelectMenu
 {
     use MergesArrays, HasInitialOption;

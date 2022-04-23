@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nwilging\LaravelSlackBot\Channels;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Nwilging\LaravelSlackBot\Contracts\Channels\SlackNotificationChannelContract;
 use Nwilging\LaravelSlackBot\Contracts\SlackApiServiceContract;
@@ -16,6 +17,11 @@ class SlackNotificationChannel implements SlackNotificationChannelContract
         $this->slackApiService = $slackApiService;
     }
 
+    /**
+     * @param Notifiable $notifiable
+     * @param Notification $notification
+     * @return void
+     */
     public function send($notifiable, Notification $notification): void
     {
         $slackNotificationArray = $notification->toSlack();

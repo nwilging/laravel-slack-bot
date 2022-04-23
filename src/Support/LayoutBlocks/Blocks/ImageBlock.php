@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Image Block
+ * @see https://api.slack.com/reference/block-kit/blocks#image
+ */
 class ImageBlock extends Block
 {
     use MergesArrays;
@@ -25,6 +29,14 @@ class ImageBlock extends Block
         $this->altText = $altText;
     }
 
+    /**
+     * An optional title for the image. Maximum length for the text in this field is 2000 characters.
+     *
+     * @see https://api.slack.com/reference/block-kit/blocks#image_fields
+     *
+     * @param TextObject $textObject
+     * @return $this
+     */
     public function withTitle(TextObject $textObject): self
     {
         $this->title = $textObject;

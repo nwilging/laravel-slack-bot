@@ -6,12 +6,17 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithConfirmationDialog;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Composition\WithFocusOnLoad;
 
+/**
+ * Checkboxes Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#checkboxes
+ */
 class CheckboxesElement extends Element
 {
-    use MergesArrays, WithFocusOnLoad;
+    use MergesArrays, WithFocusOnLoad, WithConfirmationDialog;
 
     protected string $actionId;
 
@@ -36,6 +41,11 @@ class CheckboxesElement extends Element
     }
 
     /**
+     * An array of option objects that exactly matches one or more of the options within options.
+     * These options will be selected when the checkbox group initially loads.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#checkboxes__fields
+     *
      * @param OptionObject[] $options
      * @return $this
      */
@@ -60,7 +70,7 @@ class CheckboxesElement extends Element
 
     public function toArray(): array
     {
-        return $this->toMergedArray([
+        return $this->toMergedArray($this->mergeConfirmationDialog([
             'action_id' => $this->actionId,
             'options' => array_map(function (OptionObject $option): array {
                 return $option->toArray();
@@ -69,6 +79,6 @@ class CheckboxesElement extends Element
                 return $option->toArray();
             }, $this->initialOptions) : null,
             'focus_on_load' => $this->focusOnLoad,
-        ]);
+        ]));
     }
 }

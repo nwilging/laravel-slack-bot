@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Support\LayoutBlocks\Elements;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\DatePickerElement;
@@ -31,12 +32,17 @@ class DatePickerElementTest extends TestCase
         $element = new DatePickerElement($actionId, $initialDate);
 
         $expectedPlaceholderTextArray = ['key' => 'val'];
+        $expectedConfirmationDialogArray = ['key2' => 'value2'];
 
         $placeholderTextObject = \Mockery::mock(TextObject::class);
+        $confirmationDialogObject = \Mockery::mock(ConfirmationDialogObject::class);
+
         $placeholderTextObject->shouldReceive('toArray')->andReturn($expectedPlaceholderTextArray);
+        $confirmationDialogObject->shouldReceive('toArray')->andReturn($expectedConfirmationDialogArray);
 
         $element->withPlaceholder($placeholderTextObject);
         $element->withFocusOnLoad();
+        $element->withConfirmationDialog($confirmationDialogObject);
 
         $this->assertEquals([
             'type' => Element::TYPE_DATEPICKER,
@@ -44,6 +50,7 @@ class DatePickerElementTest extends TestCase
             'initial_date' => $initialDate,
             'placeholder' => $expectedPlaceholderTextArray,
             'focus_on_load' => true,
+            'confirm' => $expectedConfirmationDialogArray,
         ], $element->toArray());
     }
 

@@ -7,6 +7,10 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\HasInitialOption;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
+/**
+ * Select Menu Public Channels Element
+ * @see https://api.slack.com/reference/block-kit/block-elements#channel_select
+ */
 class SelectMenuPublicChannelElement extends SelectMenu
 {
     use MergesArrays, HasInitialOption;
@@ -19,6 +23,17 @@ class SelectMenuPublicChannelElement extends SelectMenu
         $this->initialOptionKeyName = 'initial_channel';
     }
 
+    /**
+     * This field only works with menus in input blocks in modals.
+     * When set to true, the view_submission payload from the menu's parent view will contain a response_url.
+     * This response_url can be used for message responses.
+     * The target channel for the message will be determined by the value of this select menu.
+     *
+     * @see https://api.slack.com/reference/block-kit/block-elements#channel_select__fields
+     *
+     * @param bool $responseUrlEnabled
+     * @return $this
+     */
     public function withResponseUrlEnabled(bool $responseUrlEnabled = true): self
     {
         $this->responseUrlEnabled = $responseUrlEnabled;

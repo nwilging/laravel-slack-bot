@@ -8,6 +8,11 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
 abstract class CompositionObject implements Arrayable
 {
+    /**
+     * The Slack-API compatible array for this composition object
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return [];
