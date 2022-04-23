@@ -5,11 +5,12 @@ namespace Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\SelectMenu;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\HasInitialOption;
+use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\Elements\WithFilter;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Traits\MergesArrays;
 
 class SelectMenuConversationElement extends SelectMenu
 {
-    use MergesArrays, HasInitialOption;
+    use MergesArrays, HasInitialOption, WithFilter;
 
     protected ?bool $defaultToCurrent = null;
 
@@ -40,9 +41,9 @@ class SelectMenuConversationElement extends SelectMenu
 
     public function toArray(): array
     {
-        return $this->toMergedArray($this->mergeInitialOption([
+        return $this->toMergedArray($this->mergeInitialOption($this->mergeFilter([
             'default_to_current_conversation' => $this->defaultToCurrent,
             'response_url_enabled' => $this->responseUrlEnabled,
-        ]));
+        ])));
     }
 }
