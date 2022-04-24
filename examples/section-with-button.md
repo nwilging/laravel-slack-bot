@@ -10,12 +10,13 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Nwilging\LaravelSlackBot\Contracts\Notifications\SlackApiNotificationContract;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\SectionBlock;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\ButtonElement;
 use Nwilging\LaravelSlackBot\Support\LayoutBuilder\Builder;
 use Nwilging\LaravelSlackBot\Support\SlackOptionsBuilder;
 
-class TestNotification extends Notification
+class TestNotification extends Notification implements SlackApiNotificationContract
 {
     use Queueable;
 
@@ -30,7 +31,7 @@ class TestNotification extends Notification
         return ['slack'];
     }
 
-    public function toSlack(): array
+    public function toSlackArray(): array
     {
         $options = new SlackOptionsBuilder();
         $options->username('My Bot')

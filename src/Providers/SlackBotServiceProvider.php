@@ -26,7 +26,8 @@ class SlackBotServiceProvider extends ServiceProvider
     public function register()
     {
         Notification::resolved(function (ChannelManager $channelManager): void {
-            $channelManager->extend('slack', function (): SlackNotificationChannelContract {
+            $driverName = $this->app->make(Config::class)->get('slack.driver_name');
+            $channelManager->extend($driverName, function (): SlackNotificationChannelContract {
                 return $this->app->make(SlackNotificationChannelContract::class);
             });
         });
