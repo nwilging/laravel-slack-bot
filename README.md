@@ -33,6 +33,54 @@ _* any public channel, or private channel that the Slack App bot is a member of_
 composer require nwilging/laravel-slack-bot
 ```
 
+### Usage with `laravel/slack-notification-channel`
+
+If your app uses the default first-party Laravel package,
+[laravel/slack-notification-channel](https://github.com/laravel/slack-notification-channel),
+this package will conflict with the first-party one. This package is configured by default
+to use the channel `slack` in your `via()` method.
+
+**If you wish to use this package _alongside_ `laravel/slack-notification-channel`**, simply
+add the following to your `.env`:
+```
+SLACK_API_DRIVER_NAME=slackBot
+```
+You may replace `slackBot` with any driver name you'd like. The driver will be instantiated
+with that name and you can provide it to your `via()` method. This will allow you to use
+both this package and `laravel/slack-notification-channel` at the same time.
+
+**Example:**
+```phpt
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notification;
+use Nwilging\LaravelSlackBot\Contracts\Notifications\SlackApiNotificationContract;
+
+class SlackNotification extends Notification implements SlackApiNotificationContract
+{
+    use Queueable;
+
+    public function via($notifiable)
+    {
+        return ['slackBot']
+    }
+
+    public function toSlackArray(): array
+    {
+        return [
+            'contentType' => 'text',
+            'message' => 'test plain text message',
+            'channelId' => 'C012345',
+            'options' => [], // Message Options
+        ];
+    }
+}
+```
+
 ### Configure
 
 Use [this guide](https://api.slack.com/authentication/basics) to create your Slack App. Most
@@ -54,6 +102,13 @@ SLACK_API_BOT_TOKEN=xoxb-your-bot-token
 
 ### [Message Examples](./examples)
 
+### The `SlackApiNotificationContract`
+
+Your notification _must_ implement the interface
+`Nwilging\LaravelSlackBot\Contracts\Notifications\SlackApiNotificationContract`.
+
+### Basic Usage
+
 This package can be used automatically with Laravel notifications. Add `slack` to the
 `via()` array of your notification and a `toSlack()` method that returns an array:
 ```phpt
@@ -64,17 +119,18 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
+use Nwilging\LaravelSlackBot\Contracts\Notifications\SlackApiNotificationContract;
 
-class SlackNotification extends Notification
+class SlackNotification extends Notification implements SlackApiNotificationContract
 {
     use Queueable;
 
     public function via($notifiable)
     {
-        return ['slack'];
+        return ['slack']; // Or, `via['slackBot']` if you have configured this in .env
     }
 
-    public function toSlack(): array
+    public function toSlackArray(): array
     {
         return [
             'contentType' => 'text',
@@ -90,6 +146,53 @@ The `channelId` here is the ID or name of the channel you wish to send to.
 
 Read more on Usage for information on the `SlackApiService` which can provide you channel
 data (including ID) by a channel name.
+
+### Using alongside `laravel/slack-notification-channel`
+
+```phpt
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notification;
+use Nwilging\LaravelSlackBot\Contracts\Notifications\SlackApiNotificationContract;
+
+class SlackNotification extends Notification implements SlackApiNotificationContract
+{
+    use Queueable;
+
+    public function via($notifiable)
+    {
+        return [
+            'slack', // Using laravel/slack-notification-channel driver
+            'slackBot', // Using nwilging/laravel-slack-bot driver
+        ];
+    }
+    
+    /**
+     * The method to build a slack message for laravel/slack-notification-channel
+     */
+    public function toSlack()
+    {
+        // 
+    }
+
+    /**
+     * The method to build a slack message for nwilging/laravel-slack-bot
+     */
+    public function toSlackArray(): array
+    {
+        return [
+            'contentType' => 'text',
+            'message' => 'test plain text message',
+            'channelId' => 'C012345',
+            'options' => [], // Message Options
+        ];
+    }
+}
+```
 
 # Advanced Usage
 

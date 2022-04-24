@@ -6,6 +6,7 @@ namespace Tests\Unit\Channels;
 use Illuminate\Notifications\Notification;
 use Mockery\MockInterface;
 use Nwilging\LaravelSlackBot\Channels\SlackNotificationChannel;
+use Nwilging\LaravelSlackBot\Contracts\Notifications\SlackApiNotificationContract;
 use Nwilging\LaravelSlackBot\Contracts\SlackApiServiceContract;
 use Tests\TestCase;
 
@@ -26,8 +27,8 @@ class SlackNotificationChannelTest extends TestCase
     public function testSendThrowsInvalidArgumentException()
     {
         $notifiable = \Mockery::mock(\stdClass::class);
-        $notification = new class extends Notification {
-            public function toSlack(): array
+        $notification = new class extends Notification implements SlackApiNotificationContract {
+            public function toSlackArray(): array
             {
                 return [
                     'contentType' => 'invalid-type',
@@ -44,8 +45,8 @@ class SlackNotificationChannelTest extends TestCase
     public function testSendSendsTextMessage()
     {
         $notifiable = \Mockery::mock(\stdClass::class);
-        $notification = new class extends Notification {
-            public function toSlack(): array
+        $notification = new class extends Notification implements SlackApiNotificationContract{
+            public function toSlackArray(): array
             {
                 return [
                     'channelId' => 'C12345',
@@ -68,8 +69,8 @@ class SlackNotificationChannelTest extends TestCase
     public function testSendTextMessageSendsEmptyOptionsArray()
     {
         $notifiable = \Mockery::mock(\stdClass::class);
-        $notification = new class extends Notification {
-            public function toSlack(): array
+        $notification = new class extends Notification implements SlackApiNotificationContract{
+            public function toSlackArray(): array
             {
                 return [
                     'channelId' => 'C12345',
@@ -89,8 +90,8 @@ class SlackNotificationChannelTest extends TestCase
     public function testSendBlocksMessage()
     {
         $notifiable = \Mockery::mock(\stdClass::class);
-        $notification = new class extends Notification {
-            public function toSlack(): array
+        $notification = new class extends Notification implements SlackApiNotificationContract{
+            public function toSlackArray(): array
             {
                 return [
                     'channelId' => 'C12345',
@@ -113,8 +114,8 @@ class SlackNotificationChannelTest extends TestCase
     public function testSendBlocksMessageSendsEmptyOptionsArray()
     {
         $notifiable = \Mockery::mock(\stdClass::class);
-        $notification = new class extends Notification {
-            public function toSlack(): array
+        $notification = new class extends Notification implements SlackApiNotificationContract {
+            public function toSlackArray(): array
             {
                 return [
                     'channelId' => 'C12345',
