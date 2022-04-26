@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Services;
+namespace Nwilging\LaravelSlackBotTests\Unit\Services;
 
 use GuzzleHttp\ClientInterface;
-use Tests\TestCase;
+use Nwilging\LaravelSlackBotTests\TestCase;
 use Mockery\MockInterface;
 use Nwilging\LaravelSlackBot\Services\SlackApiService;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;

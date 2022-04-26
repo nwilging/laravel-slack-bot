@@ -25,7 +25,7 @@ class SlackNotificationChannel implements SlackNotificationChannelContract
      */
     public function send($notifiable, SlackApiNotificationContract $notification): void
     {
-        $slackNotificationArray = $notification->toSlackArray();
+        $slackNotificationArray = $notification->toSlackArray($notifiable);
         switch ($slackNotificationArray['contentType']) {
             case 'text':
                 $this->handleTextMessage($slackNotificationArray);

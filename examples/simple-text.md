@@ -28,7 +28,7 @@ class TestNotification extends Notification implements SlackApiNotificationContr
         return ['slack'];
     }
 
-    public function toSlackArray(): array
+    public function toSlackArray($notifiable): array
     {
         $options = new SlackOptionsBuilder();
         $options->username('My Bot')

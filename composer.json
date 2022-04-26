@@ -6,7 +6,7 @@
     "autoload": {
         "psr-4": {
             "Nwilging\\LaravelSlackBot\\": "src/",
-            "Tests\\": "tests/"
+            "Nwilging\\LaravelSlackBotTests\\": "tests/"
         }
     },
     "authors": [

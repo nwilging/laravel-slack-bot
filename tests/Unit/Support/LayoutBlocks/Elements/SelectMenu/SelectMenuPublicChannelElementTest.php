@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Support\LayoutBlocks\Elements\SelectMenu;
+namespace Nwilging\LaravelSlackBotTests\Unit\Support\LayoutBlocks\Elements\SelectMenu;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\SelectMenu\SelectMenuPublicChannelElement;
-use Tests\TestCase;
-use Tests\Traits\BasicSelectMenuTests;
+use Nwilging\LaravelSlackBotTests\TestCase;
+use Nwilging\LaravelSlackBotTests\Traits\BasicSelectMenuTests;
 
 class SelectMenuPublicChannelElementTest extends TestCase
 {

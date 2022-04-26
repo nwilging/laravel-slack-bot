@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Support\LayoutBlocks\Elements\MultiSelect;
+namespace Nwilging\LaravelSlackBotTests\Unit\Support\LayoutBlocks\Elements\MultiSelect;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\MultiSelect\MultiSelectUserElement;
-use Tests\TestCase;
-use Tests\Traits\BasicMultiSelectTests;
+use Nwilging\LaravelSlackBotTests\TestCase;
+use Nwilging\LaravelSlackBotTests\Traits\BasicMultiSelectTests;
 
 class MultiSelectUserElementTest extends TestCase
 {
