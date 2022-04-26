@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Channels;
+namespace Nwilging\LaravelSlackBotTests\Unit\Channels;
 
 use Illuminate\Notifications\Notification;
 use Mockery\MockInterface;
 use Nwilging\LaravelSlackBot\Channels\SlackNotificationChannel;
 use Nwilging\LaravelSlackBot\Contracts\Notifications\SlackApiNotificationContract;
 use Nwilging\LaravelSlackBot\Contracts\SlackApiServiceContract;
-use Tests\TestCase;
+use Nwilging\LaravelSlackBotTests\TestCase;
 
 class SlackNotificationChannelTest extends TestCase
 {

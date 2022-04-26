@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Support\LayoutBlocks\Blocks;
+namespace Nwilging\LaravelSlackBotTests\Unit\Support\LayoutBlocks\Blocks;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\DividerBlock;
-use Tests\TestCase;
+use Nwilging\LaravelSlackBotTests\TestCase;
 
 class DividerBlockTest extends TestCase
 {

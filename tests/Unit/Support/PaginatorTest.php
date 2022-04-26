@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Support;
+namespace Nwilging\LaravelSlackBotTests\Unit\Support;
 
 use Nwilging\LaravelSlackBot\Support\Paginator;
-use Tests\TestCase;
+use Nwilging\LaravelSlackBotTests\TestCase;
 
 class PaginatorTest extends TestCase
 {

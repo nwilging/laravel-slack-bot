@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Support\LayoutBlocks\Elements;
+namespace Nwilging\LaravelSlackBotTests\Unit\Support\LayoutBlocks\Elements;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\ConfirmationDialogObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Element;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Elements\OverflowMenuElement;
-use Tests\TestCase;
+use Nwilging\LaravelSlackBotTests\TestCase;
 
 class OverflowMenuElementTest extends TestCase
 {
