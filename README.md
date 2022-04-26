@@ -69,7 +69,7 @@ class SlackNotification extends Notification implements SlackApiNotificationCont
         return ['slackBot']
     }
 
-    public function toSlackArray(): array
+    public function toSlackArray($notifiable): array
     {
         return [
             'contentType' => 'text',
@@ -130,7 +130,7 @@ class SlackNotification extends Notification implements SlackApiNotificationCont
         return ['slack']; // Or, `via['slackBot']` if you have configured this in .env
     }
 
-    public function toSlackArray(): array
+    public function toSlackArray($notifiable): array
     {
         return [
             'contentType' => 'text',
@@ -174,7 +174,7 @@ class SlackNotification extends Notification implements SlackApiNotificationCont
     /**
      * The method to build a slack message for laravel/slack-notification-channel
      */
-    public function toSlack()
+    public function toSlack($notifiable)
     {
         // 
     }
@@ -182,7 +182,7 @@ class SlackNotification extends Notification implements SlackApiNotificationCont
     /**
      * The method to build a slack message for nwilging/laravel-slack-bot
      */
-    public function toSlackArray(): array
+    public function toSlackArray($notifiable): array
     {
         return [
             'contentType' => 'text',
