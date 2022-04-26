@@ -8,6 +8,7 @@ use Nwilging\LaravelSlackBot\Contracts\PaginatorContract;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
 use Nwilging\LaravelSlackBot\Support\Paginator;
 use Nwilging\LaravelSlackBot\Contracts\SlackApiServiceContract;
+use Nwilging\LaravelSlackBot\Support\PostMessageResponse;
 use Psr\Http\Message\ResponseInterface;
 
 class SlackApiService implements SlackApiServiceContract
@@ -92,9 +93,9 @@ class SlackApiService implements SlackApiServiceContract
      *      parse?: string,
      *      markdown?: bool,
      * } $options
-     * @return void
+     * @return PostMessageResponse
      */
-    public function sendTextMessage(string $channelId, string $message, array $options = []): void
+    public function sendTextMessage(string $channelId, string $message, array $options = []): PostMessageResponse
     {
         $payload = array_merge([
             'channel' => $channelId,
@@ -102,15 +103,16 @@ class SlackApiService implements SlackApiServiceContract
         ], $this->buildMessageOptions($options));
 
         $response = $this->makeRequest('POST', 'chat.postMessage', $payload);
+        return $this->buildMessageResponse($response);
     }
 
     /**
      * @param string $channelId
      * @param Block[] $blocks
      * @param array $options
-     * @return void
+     * @return PostMessageResponse
      */
-    public function sendBlocksMessage(string $channelId, array $blocks, array $options = []): void
+    public function sendBlocksMessage(string $channelId, array $blocks, array $options = []): PostMessageResponse
     {
         $blocksArray = array_map(function (Block $block): array {
             return $block->toArray();
@@ -122,6 +124,23 @@ class SlackApiService implements SlackApiServiceContract
         ], $this->buildMessageOptions($options));
 
         $response = $this->makeRequest('POST', 'chat.postMessage', $payload);
+        return $this->buildMessageResponse($response);
+    }
+
+    protected function buildMessageResponse(ResponseInterface $httpResponse): PostMessageResponse
+    {
+        $decoded = json_decode($httpResponse->getBody()->getContents(), true);
+
+        $response = new PostMessageResponse();
+
+        $response->httpStatus = $httpResponse->getStatusCode();
+        $response->ok = $decoded['ok'] ?? false;
+        $response->error = $decoded['error'] ?? null;
+        $response->channel = $decoded['channel'] ?? null;
+        $response->message = $decoded['message'] ?? null;
+        $response->ts = $decoded['ts'] ?? null;
+
+        return $response;
     }
 
     protected function buildMessageOptions(array $options): array

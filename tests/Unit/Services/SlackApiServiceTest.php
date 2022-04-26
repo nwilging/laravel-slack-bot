@@ -301,6 +301,16 @@ class SlackApiServiceTest extends TestCase
         $expectedUrl = sprintf('%s/chat.postMessage', $this->apiUrl);
 
         $mockResponse = \Mockery::mock(ResponseInterface::class);
+        $mockResponse->shouldReceive('getStatusCode')->once()->andReturn(200);
+
+        $mockResponse->shouldReceive('getBody')->once()->andReturnSelf();
+        $mockResponse->shouldReceive('getContents')->once()->andReturn(json_encode([
+            'ok' => true,
+            'channel' => $channelId,
+            'message' => [],
+            'ts' => '12345'
+        ]));
+
         $this->httpClient->shouldReceive('request')
             ->once()
             ->with('POST', $expectedUrl, \Mockery::on(function (array $requestOptions) use ($expectedPayload): bool {
@@ -314,7 +324,13 @@ class SlackApiServiceTest extends TestCase
             }))
             ->andReturn($mockResponse);
 
-        $this->service->sendTextMessage($channelId, $message, $options);
+        $response = $this->service->sendTextMessage($channelId, $message, $options);
+
+        $this->assertSame(200, $response->httpStatus);
+        $this->assertSame('12345', $response->ts);
+        $this->assertTrue($response->ok);
+        $this->assertNull($response->error);
+        $this->assertSame($channelId, $response->channel);
     }
 
     public function testSendBlocksMessage()
@@ -338,6 +354,16 @@ class SlackApiServiceTest extends TestCase
         $expectedUrl = sprintf('%s/chat.postMessage', $this->apiUrl);
 
         $mockResponse = \Mockery::mock(ResponseInterface::class);
+        $mockResponse->shouldReceive('getStatusCode')->once()->andReturn(200);
+
+        $mockResponse->shouldReceive('getBody')->once()->andReturnSelf();
+        $mockResponse->shouldReceive('getContents')->once()->andReturn(json_encode([
+            'ok' => true,
+            'channel' => $channelId,
+            'message' => [],
+            'ts' => '12345'
+        ]));
+
         $this->httpClient->shouldReceive('request')
             ->once()
             ->with('POST', $expectedUrl, \Mockery::on(function (array $requestOptions) use ($expectedPayload): bool {
@@ -351,7 +377,13 @@ class SlackApiServiceTest extends TestCase
             }))
             ->andReturn($mockResponse);
 
-        $this->service->sendBlocksMessage($channelId, $blocks);
+        $response = $this->service->sendBlocksMessage($channelId, $blocks);
+
+        $this->assertSame(200, $response->httpStatus);
+        $this->assertSame('12345', $response->ts);
+        $this->assertTrue($response->ok);
+        $this->assertNull($response->error);
+        $this->assertSame($channelId, $response->channel);
     }
 
     public function sendTextMessageOptionsDataProvider(): array

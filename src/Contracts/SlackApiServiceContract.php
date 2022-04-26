@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nwilging\LaravelSlackBot\Contracts;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Block;
+use Nwilging\LaravelSlackBot\Support\PostMessageResponse;
 
 /**
  * Slack API Service Connector
@@ -62,9 +63,9 @@ interface SlackApiServiceContract
      *      parse?: string,
      *      markdown?: bool,
      * } $options
-     * @return void
+     * @return PostMessageResponse
      */
-    public function sendTextMessage(string $channelId, string $message, array $options = []): void;
+    public function sendTextMessage(string $channelId, string $message, array $options = []): PostMessageResponse;
 
     /**
      * Sends a rich-text layout blocks message
@@ -74,7 +75,7 @@ interface SlackApiServiceContract
      * @param string $channelId
      * @param Block[] $blocks
      * @param array $options
-     * @return void
+     * @return PostMessageResponse
      */
-    public function sendBlocksMessage(string $channelId, array $blocks, array $options = []): void;
+    public function sendBlocksMessage(string $channelId, array $blocks, array $options = []): PostMessageResponse;
 }
