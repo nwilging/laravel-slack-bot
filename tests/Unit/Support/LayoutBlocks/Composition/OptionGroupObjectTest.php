@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Support\LayoutBlocks\Composition;
+namespace Nwilging\LaravelSlackBotTests\Unit\Support\LayoutBlocks\Composition;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionGroupObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\OptionObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
-use Tests\TestCase;
+use Nwilging\LaravelSlackBotTests\TestCase;
 
 class OptionGroupObjectTest extends TestCase
 {

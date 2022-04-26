@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Support\LayoutBuilder;
+namespace Nwilging\LaravelSlackBotTests\Unit\Support\LayoutBuilder;
 
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\ActionsBlock;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\ContextBlock;
@@ -10,7 +10,7 @@ use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Blocks\HeaderBlock;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\MarkdownObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBlocks\Composition\TextObject;
 use Nwilging\LaravelSlackBot\Support\LayoutBuilder\Builder;
-use Tests\TestCase;
+use Nwilging\LaravelSlackBotTests\TestCase;
 
 class BuilderTest extends TestCase
 {
