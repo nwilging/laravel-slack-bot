@@ -8,6 +8,7 @@ interface SlackApiNotificationContract
     /**
      * Returns a Slack-API compliant notification array.
      *
+     * @param mixed $notifiable
      * @return array{
      *      contentType: 'text'|'blocks',
      *      channelId: string,
@@ -16,5 +17,5 @@ interface SlackApiNotificationContract
      *      options?: array,
      * }
      */
-    public function toSlackArray(): array;
+    public function toSlackArray($notifiable): array;
 }
