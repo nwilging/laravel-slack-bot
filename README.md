@@ -2,6 +2,9 @@
 
 ![Tests](https://github.com/nwilging/laravel-slack-bot/actions/workflows/main-branch.yml/badge.svg?branch=main)
 ![Coverage](./.github/coverage-badge.svg)
+[![Latest Stable Version](http://poser.pugx.org/nwilging/laravel-slack-bot/v)](https://packagist.org/packages/nwilging/laravel-slack-bot)
+[![License](http://poser.pugx.org/nwilging/laravel-slack-bot/license)](https://packagist.org/packages/nwilging/laravel-slack-bot)
+[![Total Downloads](http://poser.pugx.org/nwilging/laravel-slack-bot/downloads)](https://packagist.org/packages/nwilging/laravel-slack-bot)
 
 A robust Slack messaging integration for Laravel
 
