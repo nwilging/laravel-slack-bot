@@ -312,3 +312,62 @@ $layoutBuilder
 // Pass this to `sendBlocksMessage`
 $apiServiceCompliantBlocksArray = $layoutBuilder->getBlocks();
 ```
+
+## Handling Slash Commands
+
+[Slack Slash Commands](https://api.slack.com/interactivity/slash-commands#creating_commands) can
+be handled via this package and command handlers that are configured in your application.
+
+The `Nwilging\LaravelSlackBot\Services\SlackCommandHandlerService` has a `handle` method
+which accepts a `Request` object. This service will validate the incoming message using the
+request headers and your supplied signing secret, and will then attempt to handle the command
+request with a registered command handler.
+
+### Creating Command Handlers
+
+Command handlers should implement the interface `Nwilging\LaravelSlackBot\Contracts\SlackCommandHandlerContract`.
+An example handler:
+```phpt
+<?php
+declare(strict_types=1);
+
+namespace App;
+
+use Nwilging\LaravelSlackBot\Support\SlackCommandRequest;
+use Symfony\Component\HttpFoundation\Response;
+
+class TestCommandHandler implements SlackCommandHandlerContract
+{
+    public function handle(SlackCommandRequest $commandRequest): Response
+    {
+        return response('OK');
+    }
+}
+```
+
+### Registering Command Handlers
+
+Command handlers should be registered in a service provider so that they are available
+once the application boots. You may do this in any service provider that is already
+registered in your application. Place the command handler registrations inside the
+`register` method of your service provider.
+
+```phpt
+<?php
+
+namespace App\Providers;
+
+use App\TestCommandHandler;
+use Illuminate\Support\ServiceProvider;
+use Nwilging\LaravelSlackBot\Contracts\Services\SlackCommandHandlerFactoryServiceContract;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
+        /** @var SlackCommandHandlerFactoryServiceContract $slackCommandFactory */
+        $slackCommandFactory = $this->app->make(SlackCommandHandlerFactoryServiceContract::class);
+        $slackCommandFactory->register(TestCommandHandler::class, 'command-name');
+    }
+}
+```
