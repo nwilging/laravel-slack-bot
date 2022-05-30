@@ -15,6 +15,12 @@ use Nwilging\LaravelSlackBotTests\TestCase;
 
 class SlackCommandHandlerServiceTest extends TestCase
 {
+    /**
+     * Generated with:
+     * `openssl rand -hex 16`
+     *
+     * Not a real slack signing key.
+     */
     protected string $testSigningKey = '11f1ae1af09ccb257214ba904873c789';
 
     protected MockInterface $slackCommandHandlerFactory;
@@ -55,6 +61,12 @@ class SlackCommandHandlerServiceTest extends TestCase
 
     public function testHandleThrowsExceptionWhenSignaturesDoNotMatch()
     {
+        /**
+         * Generated with:
+         * `openssl rand -hex 16`
+         *
+         * Not a real slack signing key.
+         */
         $invalidSigningKey = 'd23375f4085b76a94f6df746fbcd62ef';
         $requestData = [
             'key' => 'value',
