@@ -11,9 +11,13 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 use Nwilging\LaravelSlackBot\Channels\SlackNotificationChannel;
 use Nwilging\LaravelSlackBot\Contracts\Channels\SlackNotificationChannelContract;
+use Nwilging\LaravelSlackBot\Contracts\Services\SlackCommandHandlerFactoryServiceContract;
+use Nwilging\LaravelSlackBot\Contracts\Services\SlackCommandHandlerServiceContract;
 use Nwilging\LaravelSlackBot\Contracts\SlackApiServiceContract;
 use Nwilging\LaravelSlackBot\Contracts\Support\LayoutBuilder\BuilderContract;
 use Nwilging\LaravelSlackBot\Services\SlackApiService;
+use Nwilging\LaravelSlackBot\Services\SlackCommandHandlerFactoryService;
+use Nwilging\LaravelSlackBot\Services\SlackCommandHandlerService;
 use Nwilging\LaravelSlackBot\Support\LayoutBuilder\Builder;
 
 class SlackBotServiceProvider extends ServiceProvider
@@ -46,5 +50,12 @@ class SlackBotServiceProvider extends ServiceProvider
         $this->app->bind(BuilderContract::class, Builder::class);
 
         $this->app->bind(SlackNotificationChannelContract::class, SlackNotificationChannel::class);
+
+        $this->app->singleton(SlackCommandHandlerFactoryServiceContract::class, SlackCommandHandlerFactoryService::class);
+
+        $this->app->bind(SlackCommandHandlerServiceContract::class, SlackCommandHandlerService::class);
+        $this->app->when(SlackCommandHandlerService::class)->needs('$signingSecret')->give(function (): string {
+            return $this->app->make(Config::class)->get('slack.signing_secret');
+        });
     }
 }
