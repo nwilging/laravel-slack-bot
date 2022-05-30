@@ -45,7 +45,7 @@ class SlackCommandHandlerService implements SlackCommandHandlerServiceContract
         $request->userId = $data['user_id'];
         $request->username = $data['user_name'];
         $request->command = ltrim($data['command'], '/');
-        $request->commandArgs = explode(' ', $data['text']);
+        $request->commandArgs = explode(' ', $data['text'] ?? '');
         $request->apiAppId = $data['api_app_id'];
         $request->isEnterpriseInstall = ($data['is_enterprise_install'] === 'true');
         $request->responseUrl = $data['response_url'];
@@ -63,7 +63,7 @@ class SlackCommandHandlerService implements SlackCommandHandlerServiceContract
         }
 
         $formattedRequestBody = implode('&', array_map(function (string $key) use ($data): string {
-            return sprintf('%s=%s', urlencode($key), urlencode($data[$key]));
+            return sprintf('%s=%s', urlencode($key), urlencode($data[$key] ?? ''));
         }, array_keys($data)));
 
         $signatureBase = sprintf('v0:%s:%s', $timestamp, $formattedRequestBody);
