@@ -156,6 +156,8 @@ class SlackApiService implements SlackApiServiceContract
         if (!empty($options['markdown'])) $payload['mrkdwn'] = $options['markdown'];
         if (!empty($options['parse'])) $payload['parse'] = $options['parse'];
         if (!empty($options['metadata'])) $payload['metadata'] = $options['metadata'];
+        if (!empty($options['unfurl_media'])) $payload['unfurl_media'] = $options['unfurl_media'];
+        if (!empty($options['unfurl_links'])) $payload['unfurl_links'] = $options['unfurl_links'];
 
         return $payload;
     }
