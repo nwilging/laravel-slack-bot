@@ -369,7 +369,7 @@ class SlackApiServiceTest extends TestCase
                     ],
                     'unfurl' => [
                         'media' => true,
-                        'links' => true,
+                        'links' => false,
                     ],
                     'thread' => [
                         'ts' => 'test',
@@ -383,7 +383,7 @@ class SlackApiServiceTest extends TestCase
                     'username' => 'Test User',
                     'icon_url' => 'https://example.com',
                     'unfurl_media' => true,
-                    'unfurl_links' => true,
+                    'unfurl_links' => false,
                     'thread_ts' => 'test',
                     'reply_broadcast' => true,
                     'mrkdwn' => true,
