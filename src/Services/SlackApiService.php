@@ -142,8 +142,8 @@ class SlackApiService implements SlackApiServiceContract
         if (!empty($options['unfurl'])) {
             $unfurlOptions = $options['unfurl'];
 
-            if (!empty($unfurlOptions['media'])) $payload['unfurl_media'] = $unfurlOptions['media'];
-            if (!empty($unfurlOptions['links'])) $payload['unfurl_links'] = $unfurlOptions['links'];
+            if (isset($unfurlOptions['media'])) $payload['unfurl_media'] = $unfurlOptions['media'];
+            if (isset($unfurlOptions['links'])) $payload['unfurl_links'] = $unfurlOptions['links'];
         }
 
         if (!empty($options['thread'])) {
